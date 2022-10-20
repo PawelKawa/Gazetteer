@@ -23,6 +23,6 @@ If you have any feedback, please reach out to me at ramzord@gmail.com
 
 
 ## 🔗 Links
-https://pawelkawa.co.uk/gazetteer/index.html
+<a target="_blank" href="https://pawelkawa.co.uk/gazetteer/index.html">Live version !</a>
 
 
