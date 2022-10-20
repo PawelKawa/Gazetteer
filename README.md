@@ -1,11 +1,13 @@
 # Gazetteer
 
+
 Portflio Web Application. Project Specification from 'IT Career Switch'.
 
 This application is a “mobile first“ website that is operate equally well on desktop computers. 
 It provides profiling for all countries through thepresentation of demographic, climatic, geographical and other data.
 This is facilitated primarily through extensive use of APIs. 
 I used the open source Leaflet library to display the map and overlays, along with the Bootstrap framework to ease the task of design.
+
 
 ## Program flow is:
 
@@ -16,6 +18,12 @@ I used the open source Leaflet library to display the map and overlays, along wi
 - AJAX calls to PHP routines to other API providers using information obtained from GeoNames.
 
 
+## The application was developed using the following:
+
+- HTML / CSS / SCSS and Bootsrap
+- Javascript with jQuery and Leaflet
+- PHP
+
 
 ## Feedback
 
@@ -23,6 +31,7 @@ If you have any feedback, please reach out to me at ramzord@gmail.com
 
 
 ## 🔗 Links
+
 <a target="_blank" href="https://pawelkawa.co.uk/gazetteer/index.html">Live version !</a>
 
 
