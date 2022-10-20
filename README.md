@@ -23,6 +23,6 @@ If you have any feedback, please reach out to me at ramzord@gmail.com
 
 
 ## 🔗 Links
-[![Live version](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://pawelkawa.co.uk/gazetteer/index.html)
+https://pawelkawa.co.uk/gazetteer/index.html
 
 
