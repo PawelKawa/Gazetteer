@@ -1,0 +1,350 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 10px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  background-color: #aaa;
+}
+
+nav {
+  background-color: #83cc89;
+  min-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-left a {
+  margin-left: 1vw;
+  font-size: 3rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.nav-right {
+  margin-right: 1vw;
+}
+
+.divFlag{
+  display: inline-block;
+}
+
+#country {
+  height: 3rem;
+  font-size: 2rem;
+  margin-bottom: 3px;
+}
+
+#map {
+  height: calc(100vh - 50px);
+  width: 100vw;
+  position: relative;
+}
+.btn-about {
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 426px){
+#map{
+  height: calc(100vh - 75px);
+}
+  .nav-left a {
+    margin-left: 5vw;
+  }
+  .nav-right {
+    margin-right: 5vw;
+  }
+.nav-mid {
+  order: 3;
+  margin: auto;
+}
+}
+
+tr td,th {
+  font-size: 2rem;
+}
+
+#coatOfArms {
+  height: 50px;
+}
+
+#flag {
+  height: 50px;
+}
+
+.flag{
+  height: 40px;
+  margin-left: 20px;
+}
+
+.btn-ok{
+  font-size: 2rem;
+}
+
+
+// Modals
+
+.btn-ok{
+  background-color: #83cc89;
+}
+
+#welcomeModalAllow{
+  h1{
+    font-size: 3rem;
+    text-align: center;
+    padding: 2rem;
+  }
+  p{
+    font-size: 2rem;
+    text-align: center;
+    padding:2rem;
+  }
+  #localCountry{
+    font-size: 2.5rem;
+    padding: 2rem;
+    font-weight: bold;
+  }
+}
+
+#welcomeModalBlock{
+  h1{
+    font-size: 3rem;
+    text-align: center;
+    padding:2rem;
+  }
+  p{
+    font-size: 2rem;
+    text-align: center;
+    padding: 0 2rem 1rem 2rem
+  }
+}
+
+  #aboutModal {
+    .modal-body{
+    margin: 0 20px;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  h2{
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  p {
+    font-size: 2rem;
+    margin: 1rem 0 3rem 0;
+    text-align: center;
+  }
+  h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+  }
+  ul{
+    list-style-type: circle;
+    margin: 1rem 0;
+  }
+  li {
+    font-size: 1.3rem;
+    padding: 0.3rem;
+  }
+button {
+  font-size: 1.5rem;
+}
+}
+
+#infoModal{
+  .wiki{
+    height: 4rem;
+    margin-left: 0.1rem;
+    margin-right: auto;
+  }
+  h5 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto;
+}
+.modal-body{
+  background-color: #eee;
+}
+}
+
+#weatherModal{
+  h5 {
+    font-size: 3rem;
+  }
+  span{
+    font-weight: bold;
+  }
+  .weatherIcons{
+    width: 30px;
+  }
+ .modal-header{
+   background-color: #ddd;
+ }
+}
+
+@media only screen and (max-width: 426px){
+  #weatherModal{
+
+    tr td {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#covidModal{
+  tr.spaceUnder>td {
+    padding-bottom: 1.3em;
+  }
+  .span{
+  margin-left: 1rem;
+}
+  h5 {
+    font-size: 3rem;
+  }
+  .tar{
+    text-align: right;
+    width: 55%;
+  }
+  .tal{
+    text-align: left;
+    width: 40%;
+  }
+  .weatherIcons{
+    width: 30px;
+  }
+ .modal-header{
+   background-color: #ddd;
+ }
+}
+
+#newsModal{
+  h5{
+    font-size: 3rem;
+  }
+  span{
+    font-weight: bold;
+  }
+  .modal-header{
+    background-color: #ddd;
+  }
+  .newsImg{
+    width: 150px;
+  }
+  .newsImg:hover{
+    cursor: pointer;
+  }
+
+  tr.spaceAbove>td {
+    padding-top: 1.3em;
+    border-top: 1px solid black;
+  }
+  a{
+    color: black;
+    cursor: pointer;
+  }
+  p:hover{
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+}
+@media only screen and (max-width: 426px){
+  #newsModal{
+    .newsImg{
+      width: 100px;
+    }
+    tr td {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#btnISS {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/iss.jpg");
+  background-size: 100%;
+}
+#btnCountry {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/arrow-pointer.png");
+  background-size: 90%;
+}
+#btnInfo {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/information.png");
+  background-size: 90%;
+}
+#btnCapital {
+  width: 50px;
+  height: 50px;
+}
+#btnWeather {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/cloudy.png");
+  background-size: 90%;
+}
+#btnCovid {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/covid-19.png");
+  background-size: 90%;
+}
+#btnNews {
+  width: 50px;
+  height: 50px;
+  background-image:url("../img/icons/world-news\ .png");
+  background-size: 95%;
+}
+#preloader {
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9998;
+  overflow: hidden;
+  background-image:url("../img/earth.png");
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-color: black;
+  display: flex;
+  background-size: contain;
+  justify-content: center;
+  align-items: center;
+}
+
+#preloadertext{
+  color: #83cc89;
+  font-size: 5rem;
+  text-align: center;
+  z-index: 9999;
+  padding: 20px;
+}
+#gify{
+  height: 4rem;
+  padding-left: 2rem;
+}
+#bckpreloader{
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  opacity: 0.8;
+}

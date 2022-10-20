@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+
+    <script
+      src="https://kit.fontawesome.com/4626746004.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="./bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Gazetteer</title>
+  </head>
+  <body>
+
+    <nav>
+
+      <div class="nav-left">
+        <p><a href="" onClick="window.location.reload();">Gazetteer</a></p>
+      </div>
+      <div class="nav-mid">
+        <div class="country">
+          <select name="country" id="country" selected="selected"></select>
+        </div>
+      </div>
+      <div class="nav-right">
+        <!-- <img src="./img/icons/government.png" alt="iss icon"> -->
+        <button
+          class="btn-about btn p-2"
+          data-toggle="modal"
+          data-target="#aboutModal"
+        >
+          About
+        </button>
+      </div>
+    </nav>
+    <main>
+      <!-- <div id="preloader">
+        <div id="bckpreloader">
+          <h1 id="preloadertext">Gazetteer is loading<img id="gify" src="./img/loading.gif" alt="">
+          </h1>
+          </div>
+        </div> -->
+
+
+      <!-- Welcome modal Allow -->
+
+      <div class="modal fade bd-example-modal-sm" id="welcomeModalAllow" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <h1>Welcome to Gazetteer!</h1>
+            <p>You are currently in:</p>
+            <p id="localCountry"></p>
+            <p>You can start using buttons on the map.</p>
+            <button type="button"  class="btn btn-ok" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Welcome modal Block -->
+
+      <div class="modal fade bd-example-modal-sm" id="welcomeModalBlock" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+             <h1>Welcome to Gazetteer!</h1>
+             <p>Map couldn't locate you.</p>
+             <p>Please select country from the list above or simply click on country to see location and information about it.</p>
+            <button type="button" class="btn btn-ok" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal about -->
+
+      <div
+        class="modal fade"
+        id="aboutModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="aboutModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="aboutModalLabel">About Gazetteer</h1>
+            </div>
+            <div class="modal-body">
+              <h2>This is my first project for portfolio.</h2>
+              <h3>Used technologies:</h3>
+              <ul>
+                <li>HTML</li>
+                <li>CSS / SCSS and Bootstrap</li>
+                <li>JavaScript with jQuery and Leaflet</li>
+                <li>Php and curl</li>
+              </ul>
+              <h3>Used APIs:</h3>
+              <ul>
+                <li><a href="https://www.geonames.org/" target="_blank">Current location</a></li>
+                <li><a href="https://wheretheiss.at/" target="_blank">ISS location</a></li>
+                <li><a href="https://restcountries.com/  " target="_blank">Country info</a></li>
+                <li><a href="https://www.weatherapi.com/  " target="_blank">Weater info</a></li>
+                <li><a href="https://disease.sh/" target="_blank">Covid info</a></li>
+                <li><a href="https://newsapi.org/" target="_blank">News info</a></li>
+                <li><a href="https://www.geonames.org/" target="_blank">Markers on map</a></li>
+
+              </ul>
+              <h2>Thank you for visiting my site!</h2>
+              <h2>Author: <a href="https://github.com/PawelKawa" target="_blank">Pawel Kawa</a></h2>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"  
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Modal info -->
+      
+      <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">             
+              <h5 class="modal-title" id="infoModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+              <table class="table table-borderless table-striped">
+          <tr>
+            <td>Offical name</td>
+            <td id="officalName" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Continent</td>
+            <td id="continent" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Subregion</td>
+            <td id="subregion" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td id="capital" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Capital coordinates</td>
+            <td id="cc" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Area</td>
+            <td id="area" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Population</td>
+            <td id="population" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Languages</td>
+            <td id="languages" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Currencies</td>
+            <td id="currencies" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Currencies Symbol</td>
+            <td id="curSymbol" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Driving side</td>
+            <td id="ds" class="text-end"></td>
+          </tr>
+          <tr>
+            <td>Flag</td>
+            <td class="text-end"><img id="flag" src="" alt="flag"></td>
+          </tr>
+          <tr>
+            <td>Coat of arms</td>
+            <td class="text-end">
+              <img id="coatOfArms" src="" alt="coatOfArms">
+            </td>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <a class="wiki" href="https://wikipedia.com" target="_blank">
+          <img class="wiki" src="./img/icons/wikipedia.png" alt="">
+        </a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+           <!-- Modal Weather -->
+
+<div class="modal fade" id="weatherModal" tabindex="-1" role="dialog" aria-labelledby="weatherModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div class="divFlag">
+            <h5 class="modal-title" id="weatherModalLabel">Loading data ...</h5>
+          </div>
+          <div class="divFlag">
+            <img class="flag" src="" alt="">
+          </div>
+      </div>
+      <div class="modal-body">
+        <table class="table table-borderless table-striped">
+
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Current</th>
+              <th>Tomorrow</th>
+            </tr>
+            <tr>
+              <td><img class="weatherIcons" src="./img/icons/weather.png" alt=""></td>
+              <td>General</td>
+              <td><img id="condition" class="weatherIcons" src="" alt=""></td>
+              <td><img id="conditionTmr" class="weatherIcons" src="" alt=""></td>
+            </tr>
+          <tr>
+            <td><img class="weatherIcons" src="./img/icons/thermometer.png" alt=""></td>
+            <td>Temperature</td>
+            <td id="temperature"></td>
+            <td id="temperatureTmr"></td>
+          </tr>
+          <tr>
+            <td><img class="weatherIcons" src="./img/icons/humidity.png" alt=""></td>
+            <td>Humidity</td>
+            <td id="humidity"></td>
+            <td id="humidityTmr"></td>
+          </tr>
+          <tr>
+            <td> <img src="./img/icons/rain.png" class="weatherIcons" alt=""></td>
+            <td>Precipitation</td>
+            <td id="perc"></td>
+            <td id="percTmr"></td>
+          </tr>
+
+          <tr>
+            <td> <img src="./img/icons/wind.png" class="weatherIcons" alt=""></td>
+            <td>Wind Speed</td>
+            <td id="wind"></td>
+            <td id="windTmr"></td>
+          </tr>
+          <tr>
+            <td><img src="./img/icons/sunrise.png" class="weatherIcons" alt=""></td>
+            <td>Sunrise</td>
+            <td id="sunrise"></td>
+            <td id="sunriseTmr"></td>
+          </tr>
+          <tr>
+            <td><img src="./img/icons/sunset.png" class="weatherIcons" alt=""></td>
+            <td>Sunset</td>
+            <td id="sunset"></td>
+            <td id="sunsetTmr"></td>
+          </tr>
+          <tr>
+            <td> <img src="./img/icons/clock.png" class="weatherIcons" alt=""></td>
+            <td>Local Time</td>
+            <td id="localTime" colspan="2" class="text-center"></td>
+          </tr>
+          <tr>
+            <td><img src="./img/icons/updated.png" class="weatherIcons" alt=""></td>
+            <td>Last update</td>
+            <td id="lastUpdated" class="text-center" colspan="2"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Covid-->
+
+<div class="modal fade" id="covidModal" tabindex="-1" role="dialog" aria-labelledby="covidModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="divFlag">
+          <h5 class="modal-title" id="covidModalLabel"></h5>
+        </div>
+        <div class="divFlag">
+          <img class="flag" src="" alt="">
+        </div>
+      </div>
+      <div class="modal-body">
+        <table class="table table-borderless table-striped">
+          <tr>
+            <td class="tar">Total cases <span class="span">:</span></td>
+            <td id="totalCases" class="tal"></td>
+          </tr>
+          <tr>
+            <td class="tar">Total deaths <span class="span">:</span></td>
+            <td id="totalDeaths" class="tal"></td>
+          </tr>
+          <tr class="spaceUnder">
+            <td class="tar">Total recovered <span class="span">:</span></td>
+            <td id="totalRec" class="tal"></td>
+          </tr>
+          <tr>
+            <td class="tar">Today cases <span class="span">:</span></td>
+            <td id="todayCases" class="tal"></td>
+          </tr>
+          <tr>
+            <td class="tar">Today deaths <span class="span">:</span></td>
+            <td id="todayDeaths" class="tal"></td>
+          </tr>
+          <tr class="spaceUnder">
+            <td class="tar">Today recovered <span class="span">:</span></td>
+            <td id="todayRecover" class="tal"></td>
+          </tr>
+          <tr>
+            <td class="tar">Total tests <span class="span">:</span></td>
+            <td id="tt" class="tal"></td>
+          </tr>
+          <tr>
+            <td class="tar">Tests per 1 milion <span class="span">:</span></td>
+            <td id="t1m" class="tal"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal News-->
+
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="divFlag">
+          <h5 class="modal-title" id="newsModalLabel"></h5>
+        </div>
+        <div class="divFlag">
+          <img class="flag" src="" alt="">
+        </div>
+      </div>
+      <div class="modal-body">
+<table class="table table-borderless">
+  <tr>
+    <td id="news1source" colspan="2"></td>
+  </tr>
+  <tr>
+    <td> <a href="" target="_blank" class="news1href"><img id="news1img" class="newsImg" src="" alt=""></a> </td>
+    <td><a href="" class="news1href" target="_blank"><p id="news1title"></p></a></td>
+  </tr>
+  <tr class="spaceAbove">
+    <td id="news2source" colspan="2"></td>
+  </tr>
+  <tr>
+  <td> <a href="" target="_blank" id="news2href"><img id="news2img" class="newsImg" src="" alt=""></a> </td>
+  <td><a href="" class="news2href" target="_blank"><p id="news2title"></p></a></td>
+</tr>
+  <tr class="spaceAbove">
+    <td id="news3source" colspan="2"></td>
+  </tr>
+  <tr>
+  <td> <a href="" target="_blank" id="news3href"><img id="news3img" class="newsImg" src="" alt=""></a> </td>
+  <td><a href="" class="news3href" target="_blank"><p id="news3title"></p></a></td>
+</tr>
+  <tr class="spaceAbove">
+    <td id="news4source" colspan="2"></td>
+  </tr>
+  <tr>
+  <td> <a href="" target="_blank" id="news4href"><img id="news4img" class="newsImg" src="" alt=""></a> </td>
+  <td><a href="" class="news4href" target="_blank"><p id="news4title"></p></a></td>
+</tr>
+
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                                      <!-- MAP -->
+      <div id="map"></div>
+
+    </main>
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+    <script src="./js/jquery-3.6.0.min.js"></script>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./js/javaScript.js"></script>
+  </body>
+</html>
